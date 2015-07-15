@@ -67,7 +67,7 @@ class CmsAdmin::PagesController < CmsAdmin::BaseController
 
   def reorder
     (params[:cms_page] || []).each_with_index do |id, index|
-      Cms::Page.where(:id => id).update_all(:position => index)
+      Cms::Page.where(:id => id).update_all(:position => index, :updated_at => DateTime.current)
     end
     render :nothing => true
   end
